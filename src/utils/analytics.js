@@ -1,0 +1,1 @@
+export const trackEvent=(name,properties={})=>{if(typeof window==="undefined")return;window.dispatchEvent(new CustomEvent("invesg:analytics",{detail:{name,properties,timestamp:new Date().toISOString()}}))};

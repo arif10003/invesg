@@ -1,0 +1,5 @@
+import type {ContentSource} from "../types/intelligence";
+const source=(id:string,name:string,category:string,connectorType:ContentSource["connectorType"],frequency:ContentSource["crawlFrequency"],trust:ContentSource["trust"]):ContentSource=>({id,name,baseUrl:`https://example.org/invesg-source/${id}`,category,languageCode:"en",connectorType,crawlFrequency:frequency,trust,status:"draft"});
+export const sourceRegistrySeed:ContentSource[]=[source("government-policy","Government policy portal","government","rss","daily","government"),source("multilateral-reports","Multilateral development publications","mdb","api","daily","institutional"),source("research-index","Research institution publications","research","api","weekly","peer_reviewed"),source("standards-updates","Standards organisation updates","standards","html","weekly","institutional"),source("industry-news","Industry association newsroom","industry","rss","daily","industry")];
+// URLs are intentionally placeholders. An editor must approve real public sources,
+// robots rules, crawl frequency, and connector configuration before activation.

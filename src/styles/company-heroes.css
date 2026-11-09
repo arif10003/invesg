@@ -1,0 +1,47 @@
+/* About/Contact only: same full artwork + constrained HTML copy pattern as Home. */
+.about-page,.contact-page{--company-navy:var(--invesg-navy);--company-teal:var(--invesg-emerald)}
+body .about-page .company-hero,body .contact-page .company-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:0;width:100%!important;max-width:none;min-height:0;padding:0;margin:0;background:var(--brand-surface-cream) center / cover no-repeat}
+.company-hero>.company-hero-copy,.company-hero>.company-hero-artwork{grid-area:1/1}
+body .company-hero .company-hero-copy{position:relative;z-index:1;align-self:center;width:min(1400px,calc(100% - var(--gutter)*2));min-width:0;box-sizing:border-box;margin-inline:auto;padding:40px 56% 40px 0;background:none;border:0;border-radius:0;box-shadow:none}
+body .company-hero .company-hero-artwork{position:relative;inset:auto;z-index:0;display:block;width:100%;min-width:0;min-height:0;padding:0;align-self:start;margin:0;pointer-events:none}
+.company-hero .company-hero-artwork::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f7f4edf5 0%,#f7f4edea 30%,#f7f4edd9 40%,#f7f4ed55 49%,transparent 56%)}
+body .company-hero .company-hero-artwork img{display:block;width:100%;max-width:none;height:auto;aspect-ratio:auto;object-fit:contain;object-position:center;border:0;border-radius:0;box-shadow:none}
+body .about-page .company-hero h1,body .contact-page .company-hero h1{margin:26px 0 30px;font-family:'Cormorant Garamond',Georgia,serif;color:var(--invesg-navy);font-size:clamp(2.5rem,3.9vw,3.75rem)!important;font-weight:500;line-height:1.12;letter-spacing:-.025em;text-wrap:initial}
+.company-hero h1>span,.company-hero h1>em{display:block}
+body .company-hero h1 em,body .company-hero h1 span{font-style:normal;color:var(--invesg-emerald)}
+body .about-page .company-hero h1>span{color:var(--invesg-navy)}
+body .company-hero .about-intro p,body .company-hero .contact-intro p{margin:28px 0 18px;max-width:48ch;color:var(--invesg-navy);font-size:17px!important;line-height:1.8}
+body .company-hero .about-eyebrow,body .company-hero .contact-eyebrow{margin:0;font-size:13px;font-weight:600;line-height:1.6;letter-spacing:.08em;color:var(--invesg-navy)}
+.company-hero .about-rule{display:none}
+body .contact-page .company-hero .contact-intents{position:relative;z-index:1;grid-area:2/1;width:min(1400px,calc(100% - var(--gutter)*2));margin:0 auto 32px;background:none;border-radius:0}
+.about-value-propositions{padding:32px 0;background:var(--brand-surface-navy) center / cover no-repeat;color:white}
+.about-value-propositions>.about-shell{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.about-value-propositions article+article{border-left:1px solid #ffffff40;padding-left:24px}
+.about-value-propositions h2{font:600 18px/1.4 var(--font-body);margin:0 0 10px;color:white}
+.about-value-propositions p{font-size:16px;line-height:1.7;margin:0;color:white}
+.about-page .about-identity,.about-page .about-publishing{color:var(--invesg-navy);max-width:1100px;padding-block:20px}
+.about-identity p,.about-publishing p{max-width:85ch;font-size:17px;line-height:1.8}
+.about-identity strong{font-size:18px;line-height:1.6}
+.about-page .about-identity h2,.about-page .about-publishing h2{color:var(--invesg-navy)}
+.about-page .about-identity .about-section-heading>span,.about-page .about-publishing .about-section-heading>span{color:var(--invesg-navy)}
+/* Retained neutral separator tint; not a brand token. */
+.about-publishing{border-top:1px solid #0B1F3A22}
+.about-publishing .about-corporate-identity,.about-publishing .about-publisher-name{font-size:16px}
+.about-publishing a{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--invesg-navy);font-weight:600;text-underline-offset:4px}
+.about-publishing a svg{width:18px}
+@media(max-width:1099px){
+ body .company-hero>.company-hero-copy{grid-area:1/1;max-width:750px;margin-left:var(--gutter);padding:32px 0}
+ body .company-hero>.company-hero-artwork{grid-area:2/1}
+ .company-hero .company-hero-artwork::after{display:none}
+ body .contact-page .company-hero .contact-intents{grid-area:3/1;margin-top:24px}
+ .about-value-propositions>.about-shell{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .about-value-propositions article+article{padding-left:0;border-left:0}
+}
+@media(max-width:760px){
+ body .company-hero>.company-hero-copy{padding:30px 0 24px;max-width:none}
+ body .about-page .company-hero h1,body .contact-page .company-hero h1{font-size:clamp(2.25rem,9vw,3.25rem)!important;line-height:1.12;margin:20px 0 24px}
+ body .company-hero .about-intro p,body .company-hero .contact-intro p{font-size:16px!important;line-height:1.75;margin:22px 0 0}
+ .about-value-propositions>.about-shell{grid-template-columns:1fr;gap:22px}
+ .about-value-propositions article+article{padding-top:18px;border-top:1px solid #ffffff40}
+ .about-identity p,.about-publishing p{font-size:16px}
+}

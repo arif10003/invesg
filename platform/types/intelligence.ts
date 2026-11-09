@@ -1,0 +1,15 @@
+export type PublicationStatus="draft"|"published"|"archived"|"hidden";
+export type VerificationStatus="unverified"|"review_pending"|"verified"|"rejected";
+export type TrustLevel="government"|"peer_reviewed"|"institutional"|"industry"|"media"|"unknown";
+export type ContentType="news"|"policy"|"regulation"|"research"|"journal"|"report"|"corporate"|"market_report"|"technology"|"investment"|"conference"|"standard"|"framework";
+export type MomentumLevel="emerging"|"rising"|"high"|"stable"|"declining";
+export type MaturityLevel="nascent"|"emerging"|"developing"|"scaling"|"established"|"mature"|"declining";
+export interface Region{id:string;slug:string;name:string}
+export interface Country{id:string;regionId:string;iso2:string;iso3?:string;name:string;incomeLevel?:string;developmentStatus?:string;latitude?:number;longitude?:number;flagUrl?:string}
+export interface TaxonomyTerm{id:string;slug:string;name:string;status:PublicationStatus}
+export interface ContentSource{id:string;name:string;baseUrl:string;organizationId?:string;countryId?:string;category:string;languageCode:string;connectorType:"rss"|"html"|"api"|"sitemap"|"json";crawlFrequency:"hourly"|"six_hourly"|"daily"|"weekly"|"monthly";trust:TrustLevel;status:PublicationStatus;lastCrawlAt?:string;lastSuccessfulCrawlAt?:string}
+export interface ContentItem{id:string;sourceId:string;contentType:ContentType;canonicalUrl:string;title:string;subtitle?:string;summary?:string;rawContent?:string;parsedContent?:string;publisher?:string;authors:string[];publishedAt?:string;retrievedAt:string;contentHash:string;trust:TrustLevel;verification:VerificationStatus;status:PublicationStatus;keywords:string[];countryIds:string[];sectorIds:string[];themeIds:string[];technologyIds:string[];isPlaceholder?:boolean}
+export interface Opportunity{id:string;slug:string;title:string;description:string;primarySectorId:string;primaryThemeId:string;sectorIds:string[];themeIds:string[];countryIds:string[];momentum:MomentumLevel;maturity:MaturityLevel;investmentTrend?:string;technologyReadiness?:string;evidenceStrength?:string;evidenceCount:number;featured:boolean;lastReviewedAt:string;status:PublicationStatus;isPlaceholder?:boolean}
+export interface PageRequest{page?:number;pageSize?:number;query?:string;country?:string;sector?:string;theme?:string;contentType?:ContentType}
+export interface PageResult<T>{items:T[];page:number;pageSize:number;total:number;nextPage:number|null}
+export interface ApiResult<T>{data:T;meta:{generatedAt:string;cacheControl:string;placeholder?:boolean}}

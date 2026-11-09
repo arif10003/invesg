@@ -1,0 +1,73 @@
+/* Final shared reading rules. Functional account/session components stay unchanged. */
+:root{--reading-ink:#001c44;--reading-muted:#304356;--reading-panel:#fffdf9;--reading-border:#b9c7cd}
+body{--text-muted:var(--reading-muted);--leading-heading:1.16}
+body main[class] h1{font-size:clamp(2rem,3.6vw,3.25rem)!important;line-height:1.14!important;letter-spacing:-.025em;overflow-wrap:break-word}
+body main[class] :is(h2,h3,h4){line-height:1.22;overflow-wrap:break-word}
+body main[class] :is(p,li,dd){line-height:1.65}
+body main[class] :is(small,figcaption,time){font-size:14px!important;line-height:1.55}
+body .navbar-container .navbar-account-link,body .navbar-container .navbar-account-link:hover{color:#fff!important}
+body .account-menu-panel :is(a,button){font-size:15px;color:var(--navy)!important}
+body .account-menu-panel .account-menu-logout{color:#991b1b!important}
+body :is(.auth-card,.book-purchase,.checkout-summary,.checkout-details,.member-state,.member-settings fieldset){background:#fffdf9;border-color:#c6d0d3}
+body .auth-content{padding:clamp(24px,4vw,44px)}
+body .auth-content :is(label,input,button),body .checkout-details :is(label,input,button){font-size:16px}
+body .auth-content :is(a,.auth-switch),body .checkout-book p{font-size:15px;line-height:1.6}
+body .auth-landscape p{color:#fff;font-size:clamp(24px,2.5vw,32px);line-height:1.3}
+body .auth-landscape span{color:#e8f0f4;font-size:16px}
+body .member-heading h1{margin-block:12px 18px}
+body .member-item{gap:22px;padding:24px;align-items:flex-start}
+body .member-item>.book-cover{width:clamp(90px,12vw,136px)}
+body .member-item h3{font-size:clamp(20px,2vw,26px);line-height:1.25}
+body .member-item-actions{min-width:150px}
+body .checkout-book{grid-template-columns:112px minmax(0,1fr);align-items:center}
+body .checkout-book h3{font-size:22px;line-height:1.25}
+body .lens-spotlight .lens-title{font-size:clamp(30px,3.4vw,44px)!important;line-height:1.1!important}
+body .lens-spotlight .lens-author{font-size:14px;line-height:1.55}
+body .lens-spotlight .lens-eyebrow{font-size:14px;letter-spacing:.05em}
+body .lens-spotlight-copy{padding:clamp(24px,3vw,40px);background:linear-gradient(90deg,#fffdf9f5,#fffdf9d9);border-radius:8px;align-self:center}
+body .lens-spotlight-art{padding:28px;min-width:0}
+body .lens-spotlight .book-promotion{width:min(100%,400px);background:transparent;box-shadow:none}
+body .book-cover,body .book-card-art,body .book-detail-art{background:transparent;box-shadow:none}
+body .book-cover img,body .book-promotion img{height:auto;object-fit:contain;filter:drop-shadow(0 10px 14px #001c4420)}
+body .book-detail-copy h1{font-size:clamp(30px,3vw,44px)!important}
+body .books-page .book-card--featured h2{font-size:clamp(28px,3vw,42px)}
+body .member-navigation>span{color:#dce8f1}
+body .member-navigation :is(a,button){font-size:16px}
+body :is(.commerce-breadcrumb,.books-breadcrumb,.member-breadcrumb,.auth-breadcrumb){font-size:14px;line-height:1.6}
+body :is(button,input,select,textarea){max-width:100%}
+body :is(button,a)[aria-disabled=true],body button:disabled{opacity:.78!important}
+@media(max-width:1100px){body .book-detail-layout{grid-template-columns:minmax(180px,.7fr) minmax(0,1fr)}body .book-purchase{grid-column:1/-1}}
+@media(max-width:760px){body .book-detail-layout{grid-template-columns:minmax(0,1fr)}body .book-purchase{grid-column:auto}body .member-item{padding:20px;gap:18px}body .member-item-actions{width:100%;max-width:none}body .checkout-book{grid-template-columns:82px minmax(0,1fr)}body .lens-spotlight-copy{padding:24px}body .lens-spotlight-art{padding:24px}}
+
+body :is(.home-capabilities,.home-contact-cta,.about-work-section,.about-final-cta,.dn-flow-section,.dn-cta,.article-cta,.insights-editorial-cta,.ic-wide-cta,.preview-hero aside,.learning-hero--dark,.learning-editorial--dark,.learning-cta,.od-header aside,.od-module.od-feature,.od-final,.sx-hero-aside,.sx-header,.sfx-navigator,.si-topic-section,.si-cta,.sid-header aside,.navigator-section,.final-cta,.oi-region-section,.oi-cta){color:#fff;background-color:#001c44!important;background-image:var(--brand-surface-navy);background-size:cover;background-position:center;background-repeat:no-repeat}
+body :is(.home-capabilities,.home-contact-cta,.about-work-section,.about-final-cta,.dn-flow-section,.dn-cta,.article-cta,.insights-editorial-cta,.ic-wide-cta,.preview-hero aside,.learning-hero--dark,.learning-editorial--dark,.learning-cta,.od-header aside,.od-module.od-feature,.od-final,.sx-hero-aside,.sx-header,.sfx-navigator,.si-topic-section,.si-cta,.sid-header aside,.navigator-section,.final-cta,.oi-region-section,.oi-cta) :is(h2,h3,h4,p,li,small){color:#f4f7f9}
+body :is(.about-card,.contact-card,.service-card,.group-card,.sfx-service-card,.si-issue-card,.oi-feature-card,.oi-region-card,.oi-theme-card,.od-module:not(.od-feature),.dn-how article,.dn-service-grid article,.dn-result-layout>section,.dn-result-layout>aside,.sfx-group-grid>button){color:#001c44;background-color:#fffdf9!important}
+body :is(.about-card,.contact-card,.service-card,.group-card,.sfx-service-card,.si-issue-card,.oi-feature-card,.oi-region-card,.oi-theme-card,.od-module:not(.od-feature),.dn-how article,.dn-service-grid article,.dn-result-layout>section,.dn-result-layout>aside,.sfx-group-grid>button) :is(h2,h3,h4,strong){color:#001c44} body :is(.about-card,.contact-card,.service-card,.group-card,.sfx-service-card,.si-issue-card,.oi-feature-card,.oi-region-card,.oi-theme-card,.od-module:not(.od-feature),.dn-how article,.dn-service-grid article,.dn-result-layout>section,.dn-result-layout>aside,.sfx-group-grid>button) :is(p,li,small){color:#304356}
+body :is(.home-capabilities,.home-contact-cta,.about-work-section,.about-final-cta,.dn-flow-section,.dn-cta,.article-cta,.insights-editorial-cta,.ic-wide-cta,.preview-hero aside,.learning-hero--dark,.learning-editorial--dark,.learning-cta,.od-header aside,.od-module.od-feature,.od-final,.sx-hero-aside,.sx-header,.sfx-navigator,.si-topic-section,.si-cta,.sid-header aside,.navigator-section,.final-cta,.oi-region-section,.oi-cta) :is(.home-button--secondary,.secondary-button,.learning-action--secondary){color:#001c44;background:#fffdf9;border-color:#fffdf9}
+
+body{--brand-link:#00545f;--brand-on-dark:#f4f7f9}
+body :is(.home-eyebrow,.about-eyebrow,.sf-eyebrow,.si-eyebrow,.oi-eyebrow,.dn-eyebrow,.learning-eyebrow,.books-kicker,.commerce-heading>span){color:var(--brand-link)}
+body :is(.home-capabilities,.home-contact-cta,.learning-hero--dark,.learning-cta) :is(.home-eyebrow,.learning-eyebrow){color:#f4f7f9}
+body .brand-esg-legend>article{min-height:0}
+body .brand-esg-legend .brand-system-note{min-height:0}
+@media(max-width:760px){body .auth-content h1{font-size:30px!important}}
+
+body .member-navigation{background-image:linear-gradient(#001c44cc,#001c44cc),var(--brand-marble-navy);background-position:center;background-size:cover}
+body .brand-decision-stages span{font-size:16px;line-height:1.6}
+body :is(.oi-theme-card,.oi-secondary,.ic-wide-cta a,.sf-cta>a){height:auto;min-height:48px}
+body .oi-theme-card{min-height:90px;padding-block:16px}
+body :is(.sfx-filter-bar input,.sfx-filter-bar select){height:auto;min-height:44px;font-size:16px}
+body .checkout-steps li>span{width:28px;height:28px;line-height:1;display:inline-grid;place-items:center;flex-shrink:0}
+
+body .sx-hero-aside p{color:#f4f7f9!important}
+body .si-cta a:last-child{color:#f4f7f9;border-color:#c5d6df}
+body .sid-actions a:last-child{color:#00545f;background:#fffdf9;border-color:#00545f}
+@media(max-width:760px){}
+
+/* Supplied 3D PNG already has perspective and alpha; never add a solid image mat. */
+body .lens-spotlight-art,body .lens-spotlight .book-promotion{background:transparent;border:0;box-shadow:none;transform:none}
+body .lens-spotlight .book-promotion{display:flex;align-items:center;justify-content:center;max-width:340px;min-width:0}
+body .book-promotion img{display:block;width:auto;height:auto;max-width:100%;max-height:400px;object-fit:contain;transform:none;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 10px 14px #001c4420)}
+body .auth-landscape>img{width:auto;height:auto;max-width:100%;max-height:340px;align-self:center;object-fit:contain;border-radius:0;background:transparent;transform:none;box-shadow:none;filter:drop-shadow(0 8px 12px #0003)}
+body .book-cover img{border:0;border-radius:0;background:transparent;transform:none;object-fit:contain}
+@media(max-width:760px){body .book-promotion img{max-height:320px}body .auth-landscape>img{max-height:280px}}

@@ -1,0 +1,35 @@
+# Canonical public/member source; backend is an independent Git repository.
+node_modules/
+/vendor/
+/invesg-backend-unified/
+.env
+.env.*
+!.env.example
+auth.json
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.log
+.DS_Store
+.phpunit.result.cache
+.phpunit.cache/
+/.idea/
+/.vscode/
+/backups/
+/invesg-unified-backup*/
+/invesg-unified/release-packages/
+/invesg-unified/.handover-verification/
+/invesg-unified/stage1-overlay/
+/invesg-unified/stage2-overlay/
+/invesg-unified/work-*/
+/invesg-unified/docs/**/checkpoint/
+/invesg-unified/docs/**/checkpoints/
+/invesg-unified/docs/**/composer-home-*/
+*.zip
+
+# Inactive one-shot authoring helpers, not canonical app/CI source.
+/invesg-unified/tools/trusted-upload/
+/invesg-unified/tools/git-handover/

@@ -1,0 +1,2 @@
+.book-image-fallback{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;min-height:140px;width:100%;max-width:100%;padding:20px;border:1px solid var(--border,#d9e0e4);border-radius:6px;background:#fffdf9;color:#001c44;text-align:center;overflow-wrap:anywhere;font:400 14px/1.5 var(--font-body,Arial,sans-serif)}
+.book-image-fallback strong{font-size:14px}.book-image-fallback>span{font-size:14px;color:#52616b}

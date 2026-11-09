@@ -1,0 +1,6 @@
+/* FINAL official INVESG palette. Shared by public/member and admin entry points.
+   See BRAND_COLORS.md. Preserve official logo artwork and raster assets. */
+:root {
+  --invesg-navy: #001C44;
+  --invesg-emerald: #007579;
+}

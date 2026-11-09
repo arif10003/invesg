@@ -1,0 +1,11 @@
+.book-purchase-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px;margin-block:20px;min-width:0}
+.book-purchase-action,.book-purchase .book-purchase-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;max-width:100%;padding:12px 20px;border:1px solid var(--teal,#007579);border-radius:4px;background:var(--teal,#007579);color:#fff;font:600 16px/1.5 var(--font-body,sans-serif);text-align:center;text-decoration:none;white-space:normal;overflow-wrap:anywhere;cursor:pointer}
+a.book-purchase-action:hover{color:#fff;background:var(--brand-action-hover,#001c44);border-color:var(--brand-action-hover,#001c44)}
+.book-purchase-action svg{width:18px;height:18px;flex-shrink:0}.book-purchase-action:focus-visible{outline:3px solid var(--navy,#001c44);outline-offset:4px}
+.book-purchase-action:disabled,.book-purchase .book-purchase-action:disabled{color:var(--text-muted,#304356);background:#e8ece8;border-color:var(--border,#b9c7cd);cursor:not-allowed}
+.book-purchase .book-purchase-action{width:100%}.book-purchase-actions .book-card-explore{margin:0}
+@media(max-width:480px){.book-purchase-actions{align-items:stretch;flex-direction:column}.book-purchase-actions .book-purchase-action{width:100%}.book-purchase-actions .book-card-explore{justify-content:center}}
+
+.book-purchase-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;max-width:100%;padding:10px 0;border:0;border-radius:0;background:transparent;color:var(--brand-link,#00545f);font:600 16px/1.5 var(--font-body,sans-serif);text-decoration:none;text-underline-offset:4px;white-space:normal;cursor:pointer}
+.book-purchase-link:hover{text-decoration:underline}.book-purchase-link svg{width:18px;height:18px;flex-shrink:0}.book-purchase-link:focus-visible{outline:3px solid var(--navy,#001c44);outline-offset:4px}.book-purchase-link:disabled{cursor:not-allowed;color:var(--text-muted,#304356)}
+.book-featured-price{display:block;color:var(--navy,#001c44);font-size:16px;font-weight:600;margin-top:8px}

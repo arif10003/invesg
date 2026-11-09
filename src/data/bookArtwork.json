@@ -1,0 +1,19 @@
+{
+  "covers": {
+    "esg-is-a-lens": "/assets/books/esg-is-a-lens-cover.png"
+  },
+  "promotion": {
+    "esg-is-a-lens": "/assets/books/esg-is-a-lens-mockup-transparent.png"
+  },
+  "legacyMockupSources": {
+    "esg-is-a-lens": [
+      "/storage/assets/5caf083b-8448-4c0d-9a74-14c6ac062f91.png",
+      "/assets/books/esg-is-a-lens-wrap.webp",
+      "/images/book-hardcover-studio.webp",
+      "/assets/books/esg-is-a-lens-front.webp",
+      "/assets/books/esg-is-a-lens-studio.webp",
+      "/images/esg-is-a-lens.webp",
+      "/images/book-cover-wrap.webp"
+    ]
+  }
+}

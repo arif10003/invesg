@@ -1,0 +1,130 @@
+@import './marble-tokens.css';
+/* Official palette. Darker ink/hover colors are derived for readable contrast. */
+:root {
+  --brand-link: color-mix(in srgb, var(--invesg-emerald) 72%, var(--invesg-navy));
+  --brand-action-hover: color-mix(in srgb, var(--invesg-emerald) 70%, var(--invesg-navy));
+  --brand-on-dark: color-mix(in srgb, var(--invesg-emerald) 45%, var(--invesg-white));
+}
+
+/* Textured surroundings; existing reading cards retain their clean surfaces. */
+body, body main:is(.home-page, .learning-page, .insights-page, .auth-page, .account-page, .member-page,
+.commerce-page, .about-page, .contact-page, .sf-page, .si-page, .oi-page, .od-page, .dn-page) {
+  background-color: var(--cream);
+  background-image: var(--brand-surface-cream);
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body .home-capabilities, body .home-contact-cta, body .insights-page .insights-editorial-cta,
+body .article-page--finished .article-cta, body .sf-page .sx-hero-aside {
+  background-color: var(--navy);
+  background-image: var(--brand-surface-navy);
+  background-position: center;
+  background-size: cover;
+}
+
+/* Keep the established Navbar's structure, type and pill-shaped account action. */
+.navbar-container .navbar-account-link {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 18px;
+  border: 1px solid var(--teal);
+  border-radius: 9999px;
+  background: var(--teal);
+  color:#fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.navbar-container .navbar-account-link:hover {
+  color: white;
+  background: var(--brand-action-hover);
+  border-color: var(--brand-action-hover);
+}
+.navbar-container .navbar-account-link--mobile { width: 100%; font-size: 14px; }
+.navbar-container .nav-links a { white-space: nowrap; }
+.navbar-container .mobile-hamburger { min-height: 44px; min-width: 44px; }
+.brand-logo { height: auto; }
+.brand-logo--loading { display: block; width: clamp(220px, 30vw, 340px); max-width: 100%; aspect-ratio: 19 / 7; object-fit: contain; }
+.home-page .home-button--primary:hover, .lens-button:hover {
+  color: white;
+  background: var(--brand-action-hover);
+  border-color: var(--brand-action-hover);
+}
+
+/* Original supplied marble; the ready page appears underneath a fading overlay. */
+.brand-loading {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  isolation: isolate;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  overflow: hidden;
+  color: var(--navy);
+  background: var(--brand-surface-cream) center / cover no-repeat;
+  opacity: 1;
+  transition: opacity 450ms ease;
+}
+.brand-loading[data-phase="exiting"] { opacity: 0; pointer-events: none; }
+.brand-loading-lockup {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  max-width: 100%;
+  animation: brand-logo-entrance 300ms ease both;
+}
+.brand-loading-lockup::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: -65% -35%;
+  background: radial-gradient(ellipse, #f7f4ed50 0%, #f7f4ed18 45%, transparent 72%);
+}
+.brand-loading-rule { width: 64px; height: 2px; background: var(--invesg-emerald); }
+.brand-loading-dots { display: flex; align-items: center; justify-content: center; gap: 8px; height: 10px; }
+.brand-loading-dots > span { width: 5px; height: 5px; border-radius: 50%; background: var(--invesg-emerald); animation: brand-dot-step 1.2s ease-in-out infinite; }
+.brand-loading-dots > span:nth-child(2) { animation-delay: 160ms; }
+.brand-loading-dots > span:nth-child(3) { animation-delay: 320ms; }
+@keyframes brand-dot-step { 0%, 60%, 100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+.brand-loading-signature { color: var(--invesg-navy); font: 600 clamp(.6875rem, 1vw, .8125rem)/1.5 var(--font-body); letter-spacing: .32em; text-indent: .32em; }
+.route-pending { padding: 32px; color: var(--navy); font-size: .875rem; }
+@keyframes brand-logo-entrance { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 680px) {
+  .brand-loading { background-position: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-loading { transition: none; }
+  .brand-loading-lockup { animation: none; }
+  .brand-loading-dots > span { animation: none; opacity: .7; }
+}
+
+
+.navbar-account-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}.navbar-workspace-link{font-size:14px;color:var(--navy);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}.brand-logo--member{display:block;width:160px;height:auto;max-width:100%}
+
+/* Account disclosure: the trigger is always visible, with a reachable mobile panel. */
+.account-menu{position:relative;max-width:100%;min-width:0}
+.navbar-container .account-menu-trigger{display:flex;gap:9px;font:600 14px var(--font-body);cursor:pointer;text-align:left}
+.account-avatar{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px}
+.account-menu-panel{position:absolute;right:0;top:calc(100% + 8px);z-index:250;width:270px;max-width:calc(100vw - 32px);padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--navy);box-shadow:0 12px 35px #001c4424}
+.account-menu-panel[hidden]{display:none}
+.account-menu-panel>a,.account-menu-panel>button,.account-menu-error button{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:10px 12px;border:0;border-radius:5px;background:transparent;color:var(--navy);text-decoration:none;font:500 14px var(--font-body);text-align:left;cursor:pointer;white-space:normal}
+.account-menu-panel>a:hover,.account-menu-panel>button:hover{background:#edf5f4}
+.account-menu-panel .account-menu-logout{color:#991b1b;border-top:1px solid var(--border);margin-top:4px;border-radius:0}
+.account-menu-error,.logout-error{padding:12px;background:#fff0ed;border:1px solid #e8a397;border-radius:6px;color:#8b2f22;font-size:14px;line-height:1.5}
+.account-menu-error p,.logout-error p{margin:0 0 8px;color:inherit;font-size:14px}
+.logout-control>button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;font:600 14px var(--font-body);cursor:pointer}
+.logout-control button:disabled,.account-menu-panel button:disabled{cursor:wait;opacity:.65}
+.account-menu--mobile{width:100%}.account-menu--mobile .account-menu-panel{position:static;width:100%;max-width:none;margin-top:8px;box-shadow:none}

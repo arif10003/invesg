@@ -1,0 +1,7 @@
+/* Single asset reference shared by the public frontend and Laravel workspace. */
+:root {
+  --brand-marble-cream: url('/assets/brand/invesg-marble-cream.webp');
+  --brand-marble-navy: url('/assets/brand/invesg-marble-navy.webp');
+  --brand-surface-cream: linear-gradient(#f7f4edc7,#f7f4edc7), var(--brand-marble-cream);
+  --brand-surface-navy: linear-gradient(#001c44a3,#001c44a3), var(--brand-marble-navy);
+}

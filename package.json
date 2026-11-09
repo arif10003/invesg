@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "typecheck": "tsc -p tsconfig.platform.json",
+    "postbuild": "node invesg-backend-unified/scripts/sync-frontend-assets.mjs",
+    "build:admin": "npm --prefix invesg-backend-unified run build",
+    "dev:admin": "npm --prefix invesg-backend-unified run dev",
+    "check:utf8": "node invesg-backend-unified/scripts/check-utf8.mjs",
+    "prebuild": "npm run check:utf8"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "latest",
+    "@vitejs/plugin-react": "latest",
+    "framer-motion": "^12.43.0",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "type": "module"
+}

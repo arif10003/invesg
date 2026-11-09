@@ -1,0 +1,2 @@
+# Approved master artwork is byte-locked; never translate LF/CRLF on checkout.
+public/assets/brand/invesg-logo-master.svg -text

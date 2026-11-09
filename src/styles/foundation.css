@@ -1,0 +1,426 @@
+/* Shared refinement layer: preserves existing page compositions while making
+   the brand tokens, readability, surfaces, and interaction states consistent. */
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+body {
+  min-width: 320px;
+  color: var(--text);
+  background:var(--brand-surface-cream) center / cover no-repeat;
+}
+
+main {
+  overflow: clip;
+}
+
+p,
+li,
+dd {
+  line-height: 1.65;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+    box-shadow .2s ease, transform .2s ease, opacity .2s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(14, 154, 129, .16) !important;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed !important;
+  opacity: .52 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+input,
+textarea,
+select {
+  border-color: var(--border);
+  color: var(--text);
+  background-color: #fff;
+}
+
+input:hover:not(:disabled),
+textarea:hover:not(:disabled),
+select:hover:not(:disabled) {
+  border-color: rgba(14, 154, 129, .7);
+}
+
+[role='tab'][aria-selected='true'],
+[aria-pressed='true'],
+button.active {
+  border-color: var(--brand-emerald) !important;
+}
+
+button:active:not(:disabled),
+a:active {
+  transform: translateY(1px);
+}
+
+::selection {
+  color:#fff;
+  background: var(--brand-emerald);
+}
+
+/* Shared content measure and page rhythm. */
+.wrap,
+.about-shell,
+.contact-shell,
+.insights-shell,
+.solutions-shell,
+.sf-shell,
+.si-shell,
+.oi-shell,
+.od-shell,
+.dn-shell {
+  width: min(var(--content-max), calc(100% - (var(--gutter) * 2))) !important;
+  margin-inline: auto;
+}
+
+.about-page,
+.contact-page,
+.insights-page,
+.solutions-page,
+.sf-page,
+.si-page,
+.oi-page,
+.od-page,
+.dn-page {
+  color: var(--text) !important;
+  background-color: var(--cream) !important;
+}
+
+.explore,
+.about-section,
+.solutions-section,
+.sf-section,
+.si-section,
+.oi-section,
+.dn-section {
+  padding-block: var(--section-space) !important;
+}
+
+.about-section {
+  margin-block: 0 !important;
+}
+
+/* Important reading copy never drops to interface-caption sizing. */
+.about-page p,
+.contact-page p,
+.insights-page p,
+.solutions-page p,
+.sf-page p,
+.si-page p,
+.oi-page p,
+.od-page p,
+.dn-page p {
+  font-size: clamp(.9375rem, .25vw + .89rem, 1.0625rem) !important;
+  color: var(--text-muted);
+}
+
+.about-page li,
+.contact-page li,
+.insights-page li,
+.solutions-page li,
+.sf-page li,
+.si-page li,
+.oi-page li,
+.od-page li,
+.dn-page li {
+  font-size: max(.9375rem, 1em);
+}
+
+.about-page small,
+.contact-page small,
+.insights-page small,
+.solutions-page small,
+.sf-page small,
+.si-page small,
+.oi-page small,
+.od-page small,
+.dn-page small,
+.about-page time,
+.insights-page time {
+  font-size:14px !important;
+  line-height: 1.5;
+}
+
+.about-page h1,
+.contact-page h1,
+.insights-page h1,
+.solutions-page h1,
+.sf-page h1,
+.si-page h1,
+.oi-page h1,
+.od-page h1,
+.dn-page h1 {
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem) !important;
+  line-height: 1.02 !important;
+  text-wrap: balance;
+}
+
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+.hero-copy p,
+.about-intro p,
+.contact-intro p,
+.insights-hero-copy p,
+.solutions-hero-copy p,
+.sf-hero p,
+.si-hero p,
+.oi-hero p,
+.dn-hero p {
+  max-width: var(--reading-max);
+}
+
+/* Near-opaque editorial surfaces improve contrast over the marble texture. */
+.about-card,
+.contact-card,
+.contact-form-card,
+.insight-post-card,
+.service-card,
+.group-card,
+.sfx-service-card,
+.sfx-group-grid > button,
+.si-pillar-grid button,
+.si-issue-card,
+.sid-lens-grid article,
+.sid-decision-grid article,
+.oi-feature-card,
+.oi-region-card,
+.oi-theme-card,
+.od-module,
+.dn-how article,
+.dn-service-grid article,
+.dn-result-layout > section,
+.dn-result-layout > aside {
+  border-color: var(--border) !important;
+  background-color: rgba(255, 255, 255, .96) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-card:hover,
+.contact-card:hover,
+.insight-post-card:hover,
+.service-card:hover,
+.group-card:hover,
+.sfx-service-card:hover,
+.sfx-group-grid > button:hover,
+.si-issue-card:hover,
+.oi-feature-card:hover,
+.oi-region-card:hover,
+.oi-theme-card:hover {
+  border-color: rgba(14, 154, 129, .62) !important;
+  box-shadow: var(--shadow-md);
+}
+
+/* Normalize shared brand color aliases declared inside legacy page scopes. */
+.solutions-page,
+.sf-page,
+.si-page,
+.oi-page,
+.od-page,
+.dn-page {
+  --ink: var(--navy) !important;
+  --green: var(--brand-emerald) !important;
+  --mint: var(--brand-emerald) !important;
+  --paper: var(--surface-soft) !important;
+  --line: var(--border) !important;
+}
+
+/* Shared navigation and footer refinement. */
+.header,
+.navbar-container {
+  border-bottom: 1px solid var(--border) !important;
+  background: rgba(255, 255, 255, .96) !important;
+  box-shadow: 0 2px 16px rgba(11, 31, 58, .06) !important;
+}
+
+.header {
+  min-height: 5rem;
+  height: auto;
+  padding-block: .75rem;
+}
+
+.header a,
+.mobile-nav a,
+.nav-links a,
+.mobile-menu-overlay a {
+  color: var(--text) !important;
+}
+
+.header nav a,
+.nav-links a {
+  position: relative;
+}
+
+.header nav a:hover,
+.nav-links a:hover,
+.mobile-nav a:hover,
+.mobile-menu-overlay a:hover {
+  color:var(--brand-link) !important;
+}
+
+.menu,
+.mobile-hamburger {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+}
+
+.menu:hover,
+.mobile-hamburger:hover {
+  color:var(--brand-link) !important;
+  background: rgba(14, 154, 129, .08) !important;
+}
+
+.mobile-nav,
+.mobile-menu-overlay {
+  border: 1px solid var(--border) !important;
+  background: #fff !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.footer {
+  border-top-color: var(--border);
+  color: var(--text);
+}
+
+.footer > div:not(:first-child) > b {
+  color: var(--navy);
+  font-size: .875rem;
+  letter-spacing: .03em;
+}
+
+.footer a,
+.footer p {
+  color: var(--text-muted);
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+.footer a:hover {
+  color:var(--brand-link);
+}
+
+.footer input {
+  min-height: 44px;
+  border-color: var(--border);
+  background: #fff;
+}
+
+.footer button {
+  min-height: 44px;
+  color:#fff;
+  background: var(--brand-emerald);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    min-height: 4.5rem;
+  }
+
+  .mobile-nav {
+    width: min(22rem, calc(100% - 2rem));
+    right: 1rem;
+    top: 4.5rem;
+    padding: 1.25rem;
+  }
+
+  .mobile-nav a,
+  .mobile-menu-overlay a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 1.25rem;
+    --section-space: 4rem;
+  }
+
+  .hero {
+    min-height: 36rem;
+    height: auto;
+  }
+
+  .hero-copy {
+    width: 100%;
+    left: 0;
+  }
+
+  .footer {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer > div:first-child,
+  .footer .newsletter {
+    grid-column: auto;
+  }
+
+  .footer input,
+  .footer button {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+/* Route-level fallback keeps navigation responsive while split bundles load. */
+.route-loading{min-height:100vh;display:grid;place-items:center;color:var(--navy);background:var(--brand-surface-cream) center / cover no-repeat}.route-loading span{font-weight:700;letter-spacing:.04em}

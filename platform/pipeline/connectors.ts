@@ -1,0 +1,11 @@
+import type {ContentSource} from "../types/intelligence";
+import type {RetrievedDocument,RetrievalConnector} from "./types";
+abstract class PublicConnector implements RetrievalConnector{
+  abstract kind:"rss"|"html"|"api";
+  supports(source:ContentSource){return source.connectorType===this.kind}
+  protected requestInit(source:ContentSource,signal:AbortSignal):RequestInit{return{signal,headers:{"user-agent":"INVESG-IntelligenceBot/1.0 (+respectful-public-content-retrieval)",accept:"text/html,application/json,application/xml;q=0.9,*/*;q=0.8","x-invesg-source":source.id}}}
+  abstract retrieve(source:ContentSource,signal:AbortSignal):Promise<RetrievedDocument[]>;
+}
+export class RssConnector extends PublicConnector{kind="rss" as const;async retrieve(source:ContentSource,signal:AbortSignal){const response=await fetch(source.baseUrl,this.requestInit(source,signal));if(!response.ok)throw new Error(`RSS retrieval failed: ${response.status}`);return[{sourceId:source.id,sourceUrl:source.baseUrl,statusCode:response.status,contentTypeHeader:response.headers.get("content-type")||undefined,body:await response.text(),retrievedAt:new Date().toISOString(),etag:response.headers.get("etag")||undefined}]}}
+export class HtmlConnector extends PublicConnector{kind="html" as const;async retrieve(source:ContentSource,signal:AbortSignal){const response=await fetch(source.baseUrl,this.requestInit(source,signal));if(!response.ok)throw new Error(`HTML retrieval failed: ${response.status}`);return[{sourceId:source.id,sourceUrl:source.baseUrl,statusCode:response.status,contentTypeHeader:response.headers.get("content-type")||undefined,body:await response.text(),retrievedAt:new Date().toISOString()}]}}
+export class ApiConnector extends PublicConnector{kind="api" as const;async retrieve(source:ContentSource,signal:AbortSignal){const response=await fetch(source.baseUrl,{...this.requestInit(source,signal),headers:{...this.requestInit(source,signal).headers,accept:"application/json"}});if(!response.ok)throw new Error(`API retrieval failed: ${response.status}`);return[{sourceId:source.id,sourceUrl:source.baseUrl,statusCode:response.status,contentTypeHeader:"application/json",body:await response.text(),retrievedAt:new Date().toISOString()}]}}

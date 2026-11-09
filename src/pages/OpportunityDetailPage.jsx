@@ -1,0 +1,16 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import SiteFooter from "../components/SiteFooter";
+import { getOpportunityBySlug } from "../data/opportunityDetail";
+import { BasicIntelligenceGrid, CustomAssessmentForm, OpportunityBreadcrumb, OpportunityDetailHeader, OpportunityJourney, OpportunityOverview, OpportunitySnapshot, RelatedOpportunityCarousel, RelatedSolutionsGrid, SustainabilityInsightGrid } from "../components/opportunity/OpportunityDetailComponents";
+import "../styles/opportunity-detail.css";
+
+export default function OpportunityDetailPage(){
+  const {slug}=useParams();
+  const opportunity=getOpportunityBySlug(slug);
+  const [formOpen,setFormOpen]=React.useState(false);
+  React.useEffect(()=>{if(opportunity){document.title=`${opportunity.title} Opportunity Intelligence | INVESG`;document.querySelector('meta[name="description"]')?.setAttribute("content",`Explore market signals, investment trends, policies, technologies, research, sustainability implications, and related solutions for ${opportunity.title.toLowerCase()}.`)}},[opportunity]);
+  if(!opportunity)return <main className="od-page"><Navbar activeNavItem="Opportunity Intelligence"/><section className="od-not-found"><span className="oi-eyebrow">Opportunity Intelligence</span><h1>Opportunity not found.</h1><p>This intelligence record may have moved or is not yet available.</p><a className="oi-primary" href="/opportunity">Browse opportunities</a></section><SiteFooter/></main>;
+  return <main className="od-page"><Navbar activeNavItem="Opportunity Intelligence"/><div className="od-shell"><OpportunityBreadcrumb opportunity={opportunity}/><OpportunityDetailHeader opportunity={opportunity} onAssessment={()=>setFormOpen(true)}/><OpportunitySnapshot metrics={opportunity.snapshot}/><nav className="od-section-nav" aria-label="Opportunity sections">{[["Overview","overview"],["Market","market"],["Investments","investments"],["News","news"],["Research","research"],["Reports","reports"],["Policies","policies"],["Technology","technology"],["Related Insights","related"]].map(([label,id])=><a key={id} href={`#${id}`}>{label}</a>)}</nav><OpportunityOverview items={opportunity.overview}/><BasicIntelligenceGrid opportunity={opportunity}/><div id="related"><SustainabilityInsightGrid items={opportunity.sustainabilityInsights}/><RelatedOpportunityCarousel/><RelatedSolutionsGrid items={opportunity.relatedSolutions}/><OpportunityJourney/></div><section id="source-note" className="od-source-note"><strong>Sample intelligence record</strong><p>Values and named records on this demonstration page are placeholders for interface validation. Production content must be source-attributed and editorially verified.</p></section><section className="od-final"><div><span className="oi-eyebrow">Need deeper insights?</span><h2>Assess what this opportunity means for you.</h2><p>Explore market context, ESG implications, risks, readiness, and practical next steps.</p></div><div><button className="oi-primary" onClick={()=>setFormOpen(true)}>Request a Custom Opportunity Assessment</button><a className="oi-secondary" href="/contact">Talk to an INVESG Expert</a></div></section></div><SiteFooter/><CustomAssessmentForm open={formOpen} onClose={()=>setFormOpen(false)} opportunity={opportunity}/></main>;
+}
