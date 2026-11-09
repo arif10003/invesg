@@ -11,7 +11,7 @@ export default defineConfig(({command})=>({
  root,
  // Preserve the already-working frontend environment; no .env files are moved.
 
- base:command==='serve'?'/':'/site/',
+ base: '/',
  plugins:[react(),tailwindcss()],
  resolve:{dedupe:['react','react-dom']},
  server:{host:'127.0.0.1',port:5173,strictPort:true,origin:'http://localhost:5173',
