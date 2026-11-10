@@ -8,6 +8,7 @@ export function getPublishedBooks(records = books) {
 export function getBook(slug, records = books) { return getPublishedBooks(records).find(book => book.slug === slug) || null; }
 // Live catalog fields come exclusively from the API. Editorial fixtures are preview-only.
 export function mapBook(product) {
+  const isPrint = product.bookFormat === 'print' || product.type === 'print';
   const comingSoon = product.status === 'coming_soon' || product.publication_status === 'coming_soon';
   const paragraphs = typeof product.description === 'string' ? product.description.split(/\n\s*\n/).filter(Boolean) : [];
   return {
@@ -21,8 +22,8 @@ export function mapBook(product) {
     authorDisplayName: product.authorDisplayName || product.author || '',
     authorBio: product.authorBio || '', authorPhoto: publicLink(product.authorPhoto),
     authorProfileUrl: publicLink(product.authorProfileUrl),
-    comingSoon, commerce: comingSoon ? null : { price: product.sale_price ?? product.price, currency: product.currency },
-    canPurchase: !comingSoon && product.can_purchase === true,
+    isPrint, comingSoon, commerce: comingSoon ? null : { price: product.sale_price ?? product.price, currency: product.currency },
+    canPurchase: !isPrint && !comingSoon && product.can_purchase === true,
   };
 }
 export async function loadBooks({ signal } = {}) { return (await collectPages('/api/v1/products', { signal, auth: 'none' })).map(mapBook); }

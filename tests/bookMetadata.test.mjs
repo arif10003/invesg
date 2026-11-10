@@ -32,3 +32,11 @@ test('intro and full description do not duplicate migrated paragraphs',async()=>
  const {createServer}=await import('vite');const React=await import('react');const {renderToStaticMarkup}=await import('react-dom/server');const server=await createServer({configFile:false,optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true,hmr:false},appType:'custom'});
  try{const {default:Description}=await server.ssrLoadModule('/src/components/books/BookDescription.jsx');const html=renderToStaticMarkup(React.createElement(Description,{book:{headline:'Managed title',shortDescription:'First intro.\n\nSecond intro.',description:['First intro.','Second intro.','Further detail.']}}));assert.equal((html.match(/First intro\./g)||[]).length,1);assert.equal((html.match(/Second intro\./g)||[]).length,1);assert.match(html,/Read more about the book/);assert.match(html,/Further detail/);}finally{await server.close()}
 });
+
+test('print catalog never offers digital checkout even with stale purchase flag',async()=>{
+ const book=mapBook({slug:'printed',type:'print',bookFormat:'print',status:'published',can_purchase:true,price:149000,currency:'IDR',displayFormat:'Printed book',edition:'First edition'});
+ assert.equal(book.isPrint,true);assert.equal(book.canPurchase,false);assert.equal(book.edition,'First edition');
+ const {createServer}=await import('vite');const React=await import('react');const {renderToStaticMarkup}=await import('react-dom/server');
+ const server=await createServer({configFile:false,optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true,hmr:false},appType:'custom'});
+ try {const {default:Panel}=await server.ssrLoadModule('/src/components/books/BookPurchasePanel.jsx');const html=renderToStaticMarkup(React.createElement(Panel,{book}));assert.match(html,/Printed book/);assert.doesNotMatch(html,/Digital edition|Secure checkout|href="\/checkout/);assert.match(html,/disabled/);} finally {await server.close();}
+});
