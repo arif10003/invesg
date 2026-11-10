@@ -15,7 +15,7 @@ test('email sign-in sends credentials only to login, and subsequent member calls
  await login({email:'reader@example.test',password:'test-only-password'});
  await requestJson('/api/v1/me/profile',{auth:'required'});
  assert.equal(getSession().status,'authenticated');assert.equal(seen[0].options.headers.Authorization,undefined);
- assert.match(seen[1].options.headers.Authorization,/^Bearer synthetic/);assert.equal(seen[1].options.credentials,'same-origin');
+ assert.match(seen[1].options.headers.Authorization,/^Bearer synthetic/);assert.equal(seen[1].options.credentials,'include');
  assert.equal(seen[1].options.cache,'no-store');
 });
 test('401 revokes local identity and signed-out member calls fail before making a network request',async t=>{
@@ -79,7 +79,7 @@ test('startup restores identity through one credentialed refresh with no browser
  globalThis.fetch = async (path, options) => {
    calls++;
    assert.equal(path, '/api/v1/auth/refresh');
-   assert.equal(options.credentials, 'same-origin');
+   assert.equal(options.credentials, 'include');
    assert.equal(options.headers['X-Invesg-Session'], '1');
    assert.equal(options.headers.Authorization, undefined);
    return reply(session(42));

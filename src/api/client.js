@@ -47,12 +47,12 @@ export async function requestJson(path, { signal, method = 'GET', body, auth = '
   }
   const revision = identity.revision;
   const headers = { Accept: 'application/json' };
-  if (!apiOrigin() || apiOrigin() === globalThis.location?.origin) headers['X-Invesg-Session'] = '1';
+  headers['X-Invesg-Session'] = '1';
   if (auth !== 'none' && accessToken) headers.Authorization = `Bearer ${accessToken}`;
   if (guestToken) headers['X-Guest-Token'] = guestToken;
   if (idempotencyKey) headers['Idempotency-Key'] = idempotencyKey;
   if (body !== undefined) headers['Content-Type'] = 'application/json';
-  const response = await fetch(apiUrl(path), { method, signal, headers, credentials: 'same-origin', cache: 'no-store', ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
+  const response = await fetch(apiUrl(path), { method, signal, headers, credentials: 'include', cache: 'no-store', ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
   // A late response from a former identity must never populate the next account.
   if (auth !== 'none' && revision !== identity.revision) throw new ApiError('Your account changed. Please try again.', 401);
   if (response.status === 204) return null;
