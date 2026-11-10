@@ -7,7 +7,7 @@ test('Coming Soon preserves public metadata and stable detail links without expo
  const {renderToStaticMarkup}=await import('react-dom/server');
  const server=await createServer({configFile:false,server:{middlewareMode:true,hmr:false},appType:'custom'});
  try{
-  const book=mapBook({slug:'esg-is-a-lens',status:'coming_soon',publication_status:'coming_soon',title:'ESG is a Lens',author:'Arif R. Darana',description:'**Approved synopsis**.',cover_url:'/assets/books/esg-is-a-lens-cover.png',price:0,currency:'IDR',can_purchase:true});
+  const book=mapBook({slug:'esg-is-a-lens',status:'coming_soon',publication_status:'coming_soon',publisher:'PT INVESG NEXUS NITYA',language:'English',displayFormat:'Digital E-book (PDF)',shortDescription:'**Approved synopsis**.',title:'ESG is a Lens',author:'Arif R. Darana',description:'**Approved synopsis**.',cover_url:'/assets/books/esg-is-a-lens-cover.png',price:0,currency:'IDR',can_purchase:true});
   assert.equal(book.canPurchase,false);assert.equal(book.commerce,null);
   const {default:Card}=await server.ssrLoadModule('/src/components/books/BookCard.jsx');
   const {BookDetailContent}=await server.ssrLoadModule('/src/pages/BookDetailPage.jsx');
@@ -27,3 +27,4 @@ test('Coming Soon preserves public metadata and stable detail links without expo
   assert.match(renderToStaticMarkup(React.createElement(Card,{book:launched})),/href="\/checkout\/esg-is-a-lens"/);
  }finally{await server.close();}
 });
+

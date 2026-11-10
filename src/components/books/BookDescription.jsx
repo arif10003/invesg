@@ -33,7 +33,7 @@ export function Inline({ text }) {
   return stack[0].children;
 }
 function plainText(text = '') {
-  return text.replace(/^#{1,6}\s+/, '').replace(/\*\*|__|\*|_/g, '').replace(/\s+/g, ' ').trim();
+  return String(text ?? '').replace(/^#{1,6}\s+/, '').replace(/\*\*|__|\*|_/g, '').replace(/\s+/g, ' ').trim();
 }
 function Block({ text }) {
   const heading = text.match(/^#{1,6}\s+(.+)$/);
@@ -41,13 +41,14 @@ function Block({ text }) {
 }
 export default function BookDescription({ book }) {
   const paragraphs = (book.description || []).flatMap(text => text.split(/\n\s*\n/)).map(text => text.trim()).filter(Boolean);
-  // The API may already contain the same approved introduction/closing as the template.
-  const body = paragraphs.filter(text => !book.headline || plainText(text) !== plainText(book.headline));
-  const closingAlreadyPresent = body.some(text => plainText(text) === plainText(book.closing));
+  const intro = String(book.shortDescription || '').split(/\n\s*\n/).map(text => text.trim()).filter(Boolean);
+  const body = paragraphs.filter(text => (!book.headline || plainText(text) !== plainText(book.headline)) && !intro.some(part => plainText(part) === plainText(text)));
+  const closingAlreadyPresent = [...intro, ...body].some(text => plainText(text) === plainText(book.closing));
+  if (!book.headline && !intro.length && !body.length && !book.closing) return null;
   return <section className="book-description">
     {book.headline && <h2><Inline text={book.headline} /></h2>}
-    {body.slice(0, 2).map((text, index) => <Block key={index} text={text} />)}
-    {body.length > 2 && <details><summary>Read more about the book</summary>{body.slice(2).map((text, index) => <Block key={index} text={text} />)}</details>}
+    {(intro.length ? intro : body.slice(0, 2)).map((text, index) => <Block key={index} text={text} />)}
+    {(intro.length ? body.length > 0 : body.length > 2) && <details><summary>Read more about the book</summary>{(intro.length ? body : body.slice(2)).map((text, index) => <Block key={index} text={text} />)}</details>}
     {book.closing && !closingAlreadyPresent && <p><strong><Inline text={book.closing} /></strong></p>}
   </section>;
 }

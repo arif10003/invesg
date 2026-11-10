@@ -129,7 +129,7 @@ test('discovery and direct purchase share one product, with one detail purchase 
   const { quoteOrder } = await import('../src/api/orders.js');
   const { clearSession } = await import('../src/api/client.js');
   const previous = globalThis.fetch;
-  const fixture = { id: 'api-ebook', slug: 'esg-is-a-lens', title: 'ESG is a Lens', author: 'Arif R. Darana', price: 200000, sale_price: 150000, currency: 'IDR', can_purchase: true, description: '**See the connections behind your decisions.**\n\nApproved first paragraph.\n\n*ESG is a Lens* preserves approved emphasis.\n\n**You do not need an ESG job title to begin seeing differently.**' };
+  const fixture = { id: 'api-ebook', slug: 'esg-is-a-lens', title: 'ESG is a Lens', author: 'Arif R. Darana', price: 200000, sale_price: 150000, currency: 'IDR', can_purchase: true, displayFormat: 'Digital E-book (PDF)', fileFormat: 'PDF', description: '**See the connections behind your decisions.**\n\nApproved first paragraph.\n\n*ESG is a Lens* preserves approved emphasis.\n\n**You do not need an ESG job title to begin seeing differently.**' };
   const calls = [];
   clearSession();
   globalThis.fetch = async (path, options) => { calls.push({ path, options }); return Response.json(path.includes('/products/') ? { data: fixture } : { data: { id: 'fixture-quote' } }); };
@@ -150,7 +150,7 @@ test('discovery and direct purchase share one product, with one detail purchase 
     assert.equal((detail.match(/You do not need an ESG job title to begin seeing differently\./g) || []).length, 1);
     assert.doesNotMatch(detail, /\*\*|server quote|Promo codes|Purchase e-book/);
     assert.match(detail, /<em>ESG is a Lens<\/em>/);
-    assert.match(detail, /Digital edition \u00b7 PDF/);
+    assert.match(detail, /Digital E-book \(PDF\)/);
     const price = bookPrice(book.commerce);
     assert.match(price, /150\.000/);
     assert.ok(banner.includes(price) && detail.includes(price));
@@ -194,7 +194,7 @@ test('legal publisher metadata and nested emphasis remain safe across catalogue 
     assert.doesNotMatch(text, /<img/);
     const {default:Card} = await server.ssrLoadModule('/src/components/books/BookCard.jsx');
     const {BookDetailContent} = await server.ssrLoadModule('/src/pages/BookDetailPage.jsx');
-    const book=mapBook({slug:'esg-is-a-lens',title:'ESG is a Lens',author:'Arif R. Darana',description:'**Approved emphasis** and *perspective*.',price:123456,currency:'IDR',can_purchase:true});
+    const book=mapBook({shortDescription:'**Approved emphasis** and *perspective*.',publisher:'PT INVESG NEXUS NITYA',displayFormat:'Digital E-book (PDF)',language:'English',slug:'esg-is-a-lens',title:'ESG is a Lens',author:'Arif R. Darana',description:'**Approved emphasis** and *perspective*.',price:123456,currency:'IDR',can_purchase:true});
     assert.equal(book.publisher,'PT INVESG NEXUS NITYA');
     assert.equal(book.commerce.price,123456);
     const card=renderToStaticMarkup(React.createElement(Card,{book}));
@@ -207,3 +207,4 @@ test('legal publisher metadata and nested emphasis remain safe across catalogue 
     assert.equal(mapBook({slug:'other-title',publisher:'Another publisher'}).publisher,'Another publisher');
   } finally { await server.close(); }
 });
+

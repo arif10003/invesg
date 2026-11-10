@@ -7,6 +7,7 @@ import InsightPageState from '../components/insights/InsightPageState';
 import BookCover from '../components/books/BookCover';
 import BookPurchasePanel from '../components/books/BookPurchasePanel';
 import BookDescription from '../components/books/BookDescription';
+import { BookPublicationMetadata, BookAuthor } from '../components/books/BookMetadata';
 import { useBooks } from '../hooks/useBooks';
 import { usePageSeo } from '../utils/seo';
 import '../styles/insights.css';
@@ -17,9 +18,9 @@ import '../styles/mvp-visual.css';
 export function BookDetailContent({ book }) {
   return <div className="book-detail-layout book-detail-layout--purchase">
     <div className="book-detail-art"><BookCover book={book} eager /></div>
-    <header className="book-detail-copy book-detail-heading"><span className="books-kicker">{book.edition}</span><h1>{book.title}</h1><p className="book-subtitle">{book.subtitle}</p><p className="book-byline">By {book.author}<br />Published by {book.publisher}</p></header>
+    <header className="book-detail-copy book-detail-heading"><span className="books-kicker">{book.edition}</span><h1>{book.title}</h1><p className="book-subtitle">{book.subtitle}</p><p className="book-byline">By {book.author}{book.publisher && <><br />Published by {book.publisher}</>}</p></header>
     <BookPurchasePanel book={book} />
-    <article className="book-detail-copy book-detail-body"><dl className="book-publication-metadata"><div><dt>Publisher</dt><dd>{book.publisher}</dd></div>{book.displayFormat && <div><dt>Format</dt><dd>{book.displayFormat}</dd></div>}{book.language && <div><dt>Language</dt><dd>{book.language}</dd></div>}{book.isbn && <div><dt>ISBN</dt><dd>{book.isbn}</dd></div>}</dl><BookDescription book={book} /><section className="book-author"><h2>About the author</h2><p><strong>{book.author}</strong><br />{book.authorBio}</p></section></article>
+    <article className="book-detail-copy book-detail-body"><BookPublicationMetadata book={book} /><BookDescription book={book} /><BookAuthor book={book} /></article>
   </div>;
 }
 
@@ -37,3 +38,4 @@ export default function BookDetailPage({ previewSlug }) {
 }
 
 import '../styles/visual-sprint.css';
+

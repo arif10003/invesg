@@ -22,3 +22,6 @@
 
 @media(max-width:760px){.books-page .book-detail-layout--purchase{grid-template-columns:minmax(0,1fr)}}
 .book-publication-metadata{margin:0 0 24px;display:grid;gap:8px;font-size:16px}.book-publication-metadata>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px}.book-publication-metadata dt{font-weight:600}.book-publication-metadata dd{margin:0;overflow-wrap:anywhere}
+
+
+.book-author-photo{display:block;width:112px;height:112px;object-fit:cover;border-radius:50%;margin:16px 0}.book-author a{color:var(--brand-link)}
