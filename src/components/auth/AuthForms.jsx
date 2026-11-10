@@ -1,4 +1,5 @@
 import React from 'react';
+import GoogleSignIn from './GoogleSignIn';
 import { Eye, EyeOff } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { login, register, forgotPassword, resetPassword } from '../../api/auth';
@@ -8,7 +9,7 @@ function PasswordInput({ id, ...props }) {
   const [visible, setVisible] = React.useState(false);
   return <span className="password-field"><input id={id} {...props} type={visible ? 'text' : 'password'} /><button className="password-toggle" type="button" aria-label={visible ? 'Hide password' : 'Show password'} aria-controls={id} aria-pressed={visible} onClick={() => setVisible(value => !value)}>{visible ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}</button></span>;
 }
-export function AvailabilityNotice() { return <div className="auth-notice"><p>Email accounts are connected to the invesg account service. Google sign-in is not available.</p></div>; }
+export function AvailabilityNotice() { return <div className="auth-notice"><p>Sign in with your email or use Google when available.</p></div>; }
 export function AuthForm({ signup = false, recovery = false, reset = false, preview: requestedPreview = false, previewError = false }) {
   const preview = import.meta.env.DEV && requestedPreview;
   const { search } = useLocation(); const navigate = useNavigate(); const id = React.useId(); const proof = useEmailProof();
@@ -38,7 +39,7 @@ export function AuthForm({ signup = false, recovery = false, reset = false, prev
     {preview && <p className="auth-preview-note">Interactive layout preview. Nothing is sent or stored.</p>}
     <p className="form-feedback" role="status">{feedback}</p>
     <fieldset disabled={busy}><legend className="sr-only">{signup ? 'Registration details' : recovery ? 'Recovery email' : reset ? 'New password' : 'Login details'}</legend>
-      {!recovery && !reset && <><button className="auth-google" type="button" disabled><span className="google-mark">G</span>Google sign-in unavailable</button><p className="auth-divider">or use email</p></>}
+      {!recovery && !reset && <><GoogleSignIn signup={signup} search={search} preview={preview} busy={busy} setBusy={setBusy} setFeedback={setFeedback} /><p className="auth-divider">or use email</p></>}
       {signup && <label htmlFor={`${id}-name`}>Full name<input id={`${id}-name`} name="name" autoComplete="name" minLength={2} maxLength={200} required /></label>}
       {!reset && <label htmlFor={`${id}-email`}>Email address<input id={`${id}-email`} name="email" type="email" aria-invalid={previewError || undefined} autoComplete="email" maxLength={200} required /></label>}
       {!recovery && <label htmlFor={`${id}-password`}>{reset ? 'New password' : 'Password'}<PasswordInput id={`${id}-password`} name="password" type="password" minLength={signup || reset ? 8 : undefined} maxLength={1024} autoComplete={signup || reset ? 'new-password' : 'current-password'} required /></label>}

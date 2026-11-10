@@ -1,5 +1,5 @@
 import { requestJson, acceptSession, finishLogout, updateSessionProfile } from './client.js';
-export const authAvailability = Object.freeze({ available: true, googleAvailable: false, legalDocumentsAvailable: false, message: 'Email accounts use the invesg Laravel service. Google sign-in is not available.' });
+export const authAvailability = Object.freeze({ available: true, googleAvailable: Boolean(import.meta.env?.VITE_GOOGLE_CLIENT_ID), legalDocumentsAvailable: false, message: 'Email and configured Google accounts use the invesg Laravel service.' });
 export async function login(values) { const result = await requestJson('/api/v1/auth/login', { method: 'POST', body: values, auth: 'none' }); return acceptSession(result); }
 export async function register(values) { const result = await requestJson('/api/v1/auth/register', { method: 'POST', body: values, auth: 'none' }); return acceptSession(result); }
 export const forgotPassword = email => requestJson('/api/v1/auth/password/forgot', { method: 'POST', body: { email }, auth: 'none' });
